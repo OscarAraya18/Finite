@@ -25,4 +25,3 @@ def doubleImplyOperator(P,Q):
     if (P and Q) or (not P and not Q):
         return True
     return False
-
