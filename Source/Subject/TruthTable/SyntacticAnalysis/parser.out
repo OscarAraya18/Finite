@@ -1,0 +1,632 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NEGATE
+
+Grammar
+
+Rule 0     S' -> mainStructure
+Rule 1     mainStructure -> molecular
+Rule 2     operator -> OR
+Rule 3     operator -> AND
+Rule 4     operator -> IMPLY
+Rule 5     operator -> DOUBLEIMPLY
+Rule 6     operator -> EXCLUSIVEOR
+Rule 7     molecular -> lparenthesis molecular rparenthesis
+Rule 8     molecular -> lparenthesis molecular operator molecular rparenthesis
+Rule 9     molecular -> lparenthesis molecular operator atomic rparenthesis
+Rule 10    molecular -> lparenthesis atomic operator atomic rparenthesis
+Rule 11    molecular -> molecular operator molecular
+Rule 12    molecular -> molecular operator atomic
+Rule 13    molecular -> atomic operator atomic
+Rule 14    molecular -> atomic
+Rule 15    atomic -> ATOMIC
+Rule 16    lparenthesis -> LEFTPARENTHESIS
+Rule 17    rparenthesis -> RIGHTPARENTHESIS
+
+Terminals, with rules where they appear
+
+AND                  : 3
+ATOMIC               : 15
+DOUBLEIMPLY          : 5
+EXCLUSIVEOR          : 6
+IMPLY                : 4
+LEFTPARENTHESIS      : 16
+NEGATE               : 
+OR                   : 2
+RIGHTPARENTHESIS     : 17
+error                : 
+
+Nonterminals, with rules where they appear
+
+atomic               : 9 10 10 12 13 13 14
+lparenthesis         : 7 8 9 10
+mainStructure        : 0
+molecular            : 1 7 8 8 9 11 11 12
+operator             : 8 9 10 11 12 13
+rparenthesis         : 7 8 9 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . mainStructure
+    (1) mainStructure -> . molecular
+    (7) molecular -> . lparenthesis molecular rparenthesis
+    (8) molecular -> . lparenthesis molecular operator molecular rparenthesis
+    (9) molecular -> . lparenthesis molecular operator atomic rparenthesis
+    (10) molecular -> . lparenthesis atomic operator atomic rparenthesis
+    (11) molecular -> . molecular operator molecular
+    (12) molecular -> . molecular operator atomic
+    (13) molecular -> . atomic operator atomic
+    (14) molecular -> . atomic
+    (16) lparenthesis -> . LEFTPARENTHESIS
+    (15) atomic -> . ATOMIC
+
+    LEFTPARENTHESIS shift and go to state 5
+    ATOMIC          shift and go to state 6
+
+    mainStructure                  shift and go to state 1
+    molecular                      shift and go to state 2
+    lparenthesis                   shift and go to state 3
+    atomic                         shift and go to state 4
+
+state 1
+
+    (0) S' -> mainStructure .
+
+
+
+state 2
+
+    (1) mainStructure -> molecular .
+    (11) molecular -> molecular . operator molecular
+    (12) molecular -> molecular . operator atomic
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+    $end            reduce using rule 1 (mainStructure -> molecular .)
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+    operator                       shift and go to state 7
+
+state 3
+
+    (7) molecular -> lparenthesis . molecular rparenthesis
+    (8) molecular -> lparenthesis . molecular operator molecular rparenthesis
+    (9) molecular -> lparenthesis . molecular operator atomic rparenthesis
+    (10) molecular -> lparenthesis . atomic operator atomic rparenthesis
+    (7) molecular -> . lparenthesis molecular rparenthesis
+    (8) molecular -> . lparenthesis molecular operator molecular rparenthesis
+    (9) molecular -> . lparenthesis molecular operator atomic rparenthesis
+    (10) molecular -> . lparenthesis atomic operator atomic rparenthesis
+    (11) molecular -> . molecular operator molecular
+    (12) molecular -> . molecular operator atomic
+    (13) molecular -> . atomic operator atomic
+    (14) molecular -> . atomic
+    (15) atomic -> . ATOMIC
+    (16) lparenthesis -> . LEFTPARENTHESIS
+
+    ATOMIC          shift and go to state 6
+    LEFTPARENTHESIS shift and go to state 5
+
+    lparenthesis                   shift and go to state 3
+    molecular                      shift and go to state 13
+    atomic                         shift and go to state 14
+
+state 4
+
+    (13) molecular -> atomic . operator atomic
+    (14) molecular -> atomic .
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    $end            reduce using rule 14 (molecular -> atomic .)
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! OR              [ reduce using rule 14 (molecular -> atomic .) ]
+  ! AND             [ reduce using rule 14 (molecular -> atomic .) ]
+  ! IMPLY           [ reduce using rule 14 (molecular -> atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 14 (molecular -> atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 14 (molecular -> atomic .) ]
+
+    operator                       shift and go to state 15
+
+state 5
+
+    (16) lparenthesis -> LEFTPARENTHESIS .
+
+    ATOMIC          reduce using rule 16 (lparenthesis -> LEFTPARENTHESIS .)
+    LEFTPARENTHESIS reduce using rule 16 (lparenthesis -> LEFTPARENTHESIS .)
+
+
+state 6
+
+    (15) atomic -> ATOMIC .
+
+    OR              reduce using rule 15 (atomic -> ATOMIC .)
+    AND             reduce using rule 15 (atomic -> ATOMIC .)
+    IMPLY           reduce using rule 15 (atomic -> ATOMIC .)
+    DOUBLEIMPLY     reduce using rule 15 (atomic -> ATOMIC .)
+    EXCLUSIVEOR     reduce using rule 15 (atomic -> ATOMIC .)
+    $end            reduce using rule 15 (atomic -> ATOMIC .)
+    RIGHTPARENTHESIS reduce using rule 15 (atomic -> ATOMIC .)
+
+
+state 7
+
+    (11) molecular -> molecular operator . molecular
+    (12) molecular -> molecular operator . atomic
+    (7) molecular -> . lparenthesis molecular rparenthesis
+    (8) molecular -> . lparenthesis molecular operator molecular rparenthesis
+    (9) molecular -> . lparenthesis molecular operator atomic rparenthesis
+    (10) molecular -> . lparenthesis atomic operator atomic rparenthesis
+    (11) molecular -> . molecular operator molecular
+    (12) molecular -> . molecular operator atomic
+    (13) molecular -> . atomic operator atomic
+    (14) molecular -> . atomic
+    (15) atomic -> . ATOMIC
+    (16) lparenthesis -> . LEFTPARENTHESIS
+
+    ATOMIC          shift and go to state 6
+    LEFTPARENTHESIS shift and go to state 5
+
+    molecular                      shift and go to state 16
+    atomic                         shift and go to state 17
+    lparenthesis                   shift and go to state 3
+
+state 8
+
+    (2) operator -> OR .
+
+    ATOMIC          reduce using rule 2 (operator -> OR .)
+    LEFTPARENTHESIS reduce using rule 2 (operator -> OR .)
+
+
+state 9
+
+    (3) operator -> AND .
+
+    ATOMIC          reduce using rule 3 (operator -> AND .)
+    LEFTPARENTHESIS reduce using rule 3 (operator -> AND .)
+
+
+state 10
+
+    (4) operator -> IMPLY .
+
+    ATOMIC          reduce using rule 4 (operator -> IMPLY .)
+    LEFTPARENTHESIS reduce using rule 4 (operator -> IMPLY .)
+
+
+state 11
+
+    (5) operator -> DOUBLEIMPLY .
+
+    ATOMIC          reduce using rule 5 (operator -> DOUBLEIMPLY .)
+    LEFTPARENTHESIS reduce using rule 5 (operator -> DOUBLEIMPLY .)
+
+
+state 12
+
+    (6) operator -> EXCLUSIVEOR .
+
+    ATOMIC          reduce using rule 6 (operator -> EXCLUSIVEOR .)
+    LEFTPARENTHESIS reduce using rule 6 (operator -> EXCLUSIVEOR .)
+
+
+state 13
+
+    (7) molecular -> lparenthesis molecular . rparenthesis
+    (8) molecular -> lparenthesis molecular . operator molecular rparenthesis
+    (9) molecular -> lparenthesis molecular . operator atomic rparenthesis
+    (11) molecular -> molecular . operator molecular
+    (12) molecular -> molecular . operator atomic
+    (17) rparenthesis -> . RIGHTPARENTHESIS
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+    RIGHTPARENTHESIS shift and go to state 20
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+    rparenthesis                   shift and go to state 18
+    operator                       shift and go to state 19
+
+state 14
+
+    (10) molecular -> lparenthesis atomic . operator atomic rparenthesis
+    (13) molecular -> atomic . operator atomic
+    (14) molecular -> atomic .
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    RIGHTPARENTHESIS reduce using rule 14 (molecular -> atomic .)
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! OR              [ reduce using rule 14 (molecular -> atomic .) ]
+  ! AND             [ reduce using rule 14 (molecular -> atomic .) ]
+  ! IMPLY           [ reduce using rule 14 (molecular -> atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 14 (molecular -> atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 14 (molecular -> atomic .) ]
+
+    operator                       shift and go to state 21
+
+state 15
+
+    (13) molecular -> atomic operator . atomic
+    (15) atomic -> . ATOMIC
+
+    ATOMIC          shift and go to state 6
+
+    atomic                         shift and go to state 22
+
+state 16
+
+    (11) molecular -> molecular operator molecular .
+    (11) molecular -> molecular . operator molecular
+    (12) molecular -> molecular . operator atomic
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    $end            reduce using rule 11 (molecular -> molecular operator molecular .)
+    RIGHTPARENTHESIS reduce using rule 11 (molecular -> molecular operator molecular .)
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! OR              [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! AND             [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! IMPLY           [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+
+    operator                       shift and go to state 7
+
+state 17
+
+    (12) molecular -> molecular operator atomic .
+    (13) molecular -> atomic . operator atomic
+    (14) molecular -> atomic .
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! reduce/reduce conflict for OR resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for AND resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for IMPLY resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for DOUBLEIMPLY resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for EXCLUSIVEOR resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for $end resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for RIGHTPARENTHESIS resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    $end            reduce using rule 12 (molecular -> molecular operator atomic .)
+    RIGHTPARENTHESIS reduce using rule 12 (molecular -> molecular operator atomic .)
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! OR              [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! AND             [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! IMPLY           [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! OR              [ reduce using rule 14 (molecular -> atomic .) ]
+  ! AND             [ reduce using rule 14 (molecular -> atomic .) ]
+  ! IMPLY           [ reduce using rule 14 (molecular -> atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 14 (molecular -> atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 14 (molecular -> atomic .) ]
+  ! $end            [ reduce using rule 14 (molecular -> atomic .) ]
+  ! RIGHTPARENTHESIS [ reduce using rule 14 (molecular -> atomic .) ]
+
+    operator                       shift and go to state 15
+
+state 18
+
+    (7) molecular -> lparenthesis molecular rparenthesis .
+
+    OR              reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    AND             reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    IMPLY           reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    DOUBLEIMPLY     reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    EXCLUSIVEOR     reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    $end            reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+    RIGHTPARENTHESIS reduce using rule 7 (molecular -> lparenthesis molecular rparenthesis .)
+
+
+state 19
+
+    (8) molecular -> lparenthesis molecular operator . molecular rparenthesis
+    (9) molecular -> lparenthesis molecular operator . atomic rparenthesis
+    (11) molecular -> molecular operator . molecular
+    (12) molecular -> molecular operator . atomic
+    (7) molecular -> . lparenthesis molecular rparenthesis
+    (8) molecular -> . lparenthesis molecular operator molecular rparenthesis
+    (9) molecular -> . lparenthesis molecular operator atomic rparenthesis
+    (10) molecular -> . lparenthesis atomic operator atomic rparenthesis
+    (11) molecular -> . molecular operator molecular
+    (12) molecular -> . molecular operator atomic
+    (13) molecular -> . atomic operator atomic
+    (14) molecular -> . atomic
+    (15) atomic -> . ATOMIC
+    (16) lparenthesis -> . LEFTPARENTHESIS
+
+    ATOMIC          shift and go to state 6
+    LEFTPARENTHESIS shift and go to state 5
+
+    lparenthesis                   shift and go to state 3
+    molecular                      shift and go to state 23
+    atomic                         shift and go to state 24
+
+state 20
+
+    (17) rparenthesis -> RIGHTPARENTHESIS .
+
+    OR              reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    AND             reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    IMPLY           reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    DOUBLEIMPLY     reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    EXCLUSIVEOR     reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    $end            reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+    RIGHTPARENTHESIS reduce using rule 17 (rparenthesis -> RIGHTPARENTHESIS .)
+
+
+state 21
+
+    (10) molecular -> lparenthesis atomic operator . atomic rparenthesis
+    (13) molecular -> atomic operator . atomic
+    (15) atomic -> . ATOMIC
+
+    ATOMIC          shift and go to state 6
+
+    atomic                         shift and go to state 25
+
+state 22
+
+    (13) molecular -> atomic operator atomic .
+
+    OR              reduce using rule 13 (molecular -> atomic operator atomic .)
+    AND             reduce using rule 13 (molecular -> atomic operator atomic .)
+    IMPLY           reduce using rule 13 (molecular -> atomic operator atomic .)
+    DOUBLEIMPLY     reduce using rule 13 (molecular -> atomic operator atomic .)
+    EXCLUSIVEOR     reduce using rule 13 (molecular -> atomic operator atomic .)
+    $end            reduce using rule 13 (molecular -> atomic operator atomic .)
+    RIGHTPARENTHESIS reduce using rule 13 (molecular -> atomic operator atomic .)
+
+
+state 23
+
+    (8) molecular -> lparenthesis molecular operator molecular . rparenthesis
+    (11) molecular -> molecular operator molecular .
+    (11) molecular -> molecular . operator molecular
+    (12) molecular -> molecular . operator atomic
+    (17) rparenthesis -> . RIGHTPARENTHESIS
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! shift/reduce conflict for RIGHTPARENTHESIS resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    RIGHTPARENTHESIS shift and go to state 20
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! RIGHTPARENTHESIS [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! OR              [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! AND             [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! IMPLY           [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 11 (molecular -> molecular operator molecular .) ]
+
+    operator                       shift and go to state 7
+    rparenthesis                   shift and go to state 26
+
+state 24
+
+    (9) molecular -> lparenthesis molecular operator atomic . rparenthesis
+    (12) molecular -> molecular operator atomic .
+    (13) molecular -> atomic . operator atomic
+    (14) molecular -> atomic .
+    (17) rparenthesis -> . RIGHTPARENTHESIS
+    (2) operator -> . OR
+    (3) operator -> . AND
+    (4) operator -> . IMPLY
+    (5) operator -> . DOUBLEIMPLY
+    (6) operator -> . EXCLUSIVEOR
+
+  ! reduce/reduce conflict for RIGHTPARENTHESIS resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for OR resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for AND resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for IMPLY resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for DOUBLEIMPLY resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! reduce/reduce conflict for EXCLUSIVEOR resolved using rule 12 (molecular -> molecular operator atomic .)
+  ! shift/reduce conflict for RIGHTPARENTHESIS resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for IMPLY resolved as shift
+  ! shift/reduce conflict for DOUBLEIMPLY resolved as shift
+  ! shift/reduce conflict for EXCLUSIVEOR resolved as shift
+    RIGHTPARENTHESIS shift and go to state 20
+    OR              shift and go to state 8
+    AND             shift and go to state 9
+    IMPLY           shift and go to state 10
+    DOUBLEIMPLY     shift and go to state 11
+    EXCLUSIVEOR     shift and go to state 12
+
+  ! RIGHTPARENTHESIS [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! OR              [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! AND             [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! IMPLY           [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 12 (molecular -> molecular operator atomic .) ]
+  ! RIGHTPARENTHESIS [ reduce using rule 14 (molecular -> atomic .) ]
+  ! OR              [ reduce using rule 14 (molecular -> atomic .) ]
+  ! AND             [ reduce using rule 14 (molecular -> atomic .) ]
+  ! IMPLY           [ reduce using rule 14 (molecular -> atomic .) ]
+  ! DOUBLEIMPLY     [ reduce using rule 14 (molecular -> atomic .) ]
+  ! EXCLUSIVEOR     [ reduce using rule 14 (molecular -> atomic .) ]
+
+    operator                       shift and go to state 15
+    rparenthesis                   shift and go to state 27
+
+state 25
+
+    (10) molecular -> lparenthesis atomic operator atomic . rparenthesis
+    (13) molecular -> atomic operator atomic .
+    (17) rparenthesis -> . RIGHTPARENTHESIS
+
+  ! shift/reduce conflict for RIGHTPARENTHESIS resolved as shift
+    OR              reduce using rule 13 (molecular -> atomic operator atomic .)
+    AND             reduce using rule 13 (molecular -> atomic operator atomic .)
+    IMPLY           reduce using rule 13 (molecular -> atomic operator atomic .)
+    DOUBLEIMPLY     reduce using rule 13 (molecular -> atomic operator atomic .)
+    EXCLUSIVEOR     reduce using rule 13 (molecular -> atomic operator atomic .)
+    RIGHTPARENTHESIS shift and go to state 20
+
+  ! RIGHTPARENTHESIS [ reduce using rule 13 (molecular -> atomic operator atomic .) ]
+
+    rparenthesis                   shift and go to state 28
+
+state 26
+
+    (8) molecular -> lparenthesis molecular operator molecular rparenthesis .
+
+    OR              reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    AND             reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    IMPLY           reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    DOUBLEIMPLY     reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    EXCLUSIVEOR     reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    $end            reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+    RIGHTPARENTHESIS reduce using rule 8 (molecular -> lparenthesis molecular operator molecular rparenthesis .)
+
+
+state 27
+
+    (9) molecular -> lparenthesis molecular operator atomic rparenthesis .
+
+    OR              reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    AND             reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    IMPLY           reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    DOUBLEIMPLY     reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    EXCLUSIVEOR     reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    $end            reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+    RIGHTPARENTHESIS reduce using rule 9 (molecular -> lparenthesis molecular operator atomic rparenthesis .)
+
+
+state 28
+
+    (10) molecular -> lparenthesis atomic operator atomic rparenthesis .
+
+    OR              reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    AND             reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    IMPLY           reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    DOUBLEIMPLY     reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    EXCLUSIVEOR     reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    $end            reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+    RIGHTPARENTHESIS reduce using rule 10 (molecular -> lparenthesis atomic operator atomic rparenthesis .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for OR in state 4 resolved as shift
+WARNING: shift/reduce conflict for AND in state 4 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 4 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 4 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 4 resolved as shift
+WARNING: shift/reduce conflict for OR in state 14 resolved as shift
+WARNING: shift/reduce conflict for AND in state 14 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 14 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 14 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 14 resolved as shift
+WARNING: shift/reduce conflict for OR in state 16 resolved as shift
+WARNING: shift/reduce conflict for AND in state 16 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 16 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 16 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 16 resolved as shift
+WARNING: shift/reduce conflict for OR in state 17 resolved as shift
+WARNING: shift/reduce conflict for AND in state 17 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 17 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 17 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 17 resolved as shift
+WARNING: shift/reduce conflict for RIGHTPARENTHESIS in state 23 resolved as shift
+WARNING: shift/reduce conflict for OR in state 23 resolved as shift
+WARNING: shift/reduce conflict for AND in state 23 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 23 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 23 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 23 resolved as shift
+WARNING: shift/reduce conflict for RIGHTPARENTHESIS in state 24 resolved as shift
+WARNING: shift/reduce conflict for OR in state 24 resolved as shift
+WARNING: shift/reduce conflict for AND in state 24 resolved as shift
+WARNING: shift/reduce conflict for IMPLY in state 24 resolved as shift
+WARNING: shift/reduce conflict for DOUBLEIMPLY in state 24 resolved as shift
+WARNING: shift/reduce conflict for EXCLUSIVEOR in state 24 resolved as shift
+WARNING: shift/reduce conflict for RIGHTPARENTHESIS in state 25 resolved as shift
+WARNING: reduce/reduce conflict in state 17 resolved using rule (molecular -> molecular operator atomic)
+WARNING: rejected rule (molecular -> atomic) in state 17
+WARNING: reduce/reduce conflict in state 24 resolved using rule (molecular -> molecular operator atomic)
+WARNING: rejected rule (molecular -> atomic) in state 24
