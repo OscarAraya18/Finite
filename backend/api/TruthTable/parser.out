@@ -1,0 +1,459 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> NOT expression
+Rule 2     expression -> expression AND expression
+Rule 3     expression -> expression OR expression
+Rule 4     expression -> expression XOR expression
+Rule 5     expression -> expression NAND expression
+Rule 6     expression -> expression NOR expression
+Rule 7     expression -> expression XNOR expression
+Rule 8     expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS
+Rule 9     expression -> OPERAND
+
+Terminals, with rules where they appear
+
+AND                  : 2
+LEFTPARENTHESIS      : 8
+NAND                 : 5
+NOR                  : 6
+NOT                  : 1
+OPERAND              : 9
+OR                   : 3
+RIGHTPARENTHESIS     : 8
+XNOR                 : 7
+XOR                  : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 2 3 3 4 4 5 5 6 6 7 7 8 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    XOR             shift and go to state 7
+    NAND            shift and go to state 8
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+
+state 2
+
+    (1) expression -> NOT . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 11
+
+state 3
+
+    (8) expression -> LEFTPARENTHESIS . expression RIGHTPARENTHESIS
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 12
+
+state 4
+
+    (9) expression -> OPERAND .
+
+    AND             reduce using rule 9 (expression -> OPERAND .)
+    OR              reduce using rule 9 (expression -> OPERAND .)
+    XOR             reduce using rule 9 (expression -> OPERAND .)
+    NAND            reduce using rule 9 (expression -> OPERAND .)
+    NOR             reduce using rule 9 (expression -> OPERAND .)
+    XNOR            reduce using rule 9 (expression -> OPERAND .)
+    $end            reduce using rule 9 (expression -> OPERAND .)
+    RIGHTPARENTHESIS reduce using rule 9 (expression -> OPERAND .)
+
+
+state 5
+
+    (2) expression -> expression AND . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 13
+
+state 6
+
+    (3) expression -> expression OR . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 14
+
+state 7
+
+    (4) expression -> expression XOR . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 15
+
+state 8
+
+    (5) expression -> expression NAND . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 16
+
+state 9
+
+    (6) expression -> expression NOR . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 17
+
+state 10
+
+    (7) expression -> expression XNOR . expression
+    (1) expression -> . NOT expression
+    (2) expression -> . expression AND expression
+    (3) expression -> . expression OR expression
+    (4) expression -> . expression XOR expression
+    (5) expression -> . expression NAND expression
+    (6) expression -> . expression NOR expression
+    (7) expression -> . expression XNOR expression
+    (8) expression -> . LEFTPARENTHESIS expression RIGHTPARENTHESIS
+    (9) expression -> . OPERAND
+
+    NOT             shift and go to state 2
+    LEFTPARENTHESIS shift and go to state 3
+    OPERAND         shift and go to state 4
+
+    expression                     shift and go to state 18
+
+state 11
+
+    (1) expression -> NOT expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 1 (expression -> NOT expression .)
+    OR              reduce using rule 1 (expression -> NOT expression .)
+    XOR             reduce using rule 1 (expression -> NOT expression .)
+    NAND            reduce using rule 1 (expression -> NOT expression .)
+    NOR             reduce using rule 1 (expression -> NOT expression .)
+    XNOR            reduce using rule 1 (expression -> NOT expression .)
+    $end            reduce using rule 1 (expression -> NOT expression .)
+    RIGHTPARENTHESIS reduce using rule 1 (expression -> NOT expression .)
+
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+  ! XOR             [ shift and go to state 7 ]
+  ! NAND            [ shift and go to state 8 ]
+  ! NOR             [ shift and go to state 9 ]
+  ! XNOR            [ shift and go to state 10 ]
+
+
+state 12
+
+    (8) expression -> LEFTPARENTHESIS expression . RIGHTPARENTHESIS
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    RIGHTPARENTHESIS shift and go to state 19
+    AND             shift and go to state 5
+    OR              shift and go to state 6
+    XOR             shift and go to state 7
+    NAND            shift and go to state 8
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+
+state 13
+
+    (2) expression -> expression AND expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 2 (expression -> expression AND expression .)
+    $end            reduce using rule 2 (expression -> expression AND expression .)
+    RIGHTPARENTHESIS reduce using rule 2 (expression -> expression AND expression .)
+    OR              shift and go to state 6
+    XOR             shift and go to state 7
+    NAND            shift and go to state 8
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+  ! OR              [ reduce using rule 2 (expression -> expression AND expression .) ]
+  ! XOR             [ reduce using rule 2 (expression -> expression AND expression .) ]
+  ! NAND            [ reduce using rule 2 (expression -> expression AND expression .) ]
+  ! NOR             [ reduce using rule 2 (expression -> expression AND expression .) ]
+  ! XNOR            [ reduce using rule 2 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 5 ]
+
+
+state 14
+
+    (3) expression -> expression OR expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 3 (expression -> expression OR expression .)
+    OR              reduce using rule 3 (expression -> expression OR expression .)
+    $end            reduce using rule 3 (expression -> expression OR expression .)
+    RIGHTPARENTHESIS reduce using rule 3 (expression -> expression OR expression .)
+    XOR             shift and go to state 7
+    NAND            shift and go to state 8
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+  ! XOR             [ reduce using rule 3 (expression -> expression OR expression .) ]
+  ! NAND            [ reduce using rule 3 (expression -> expression OR expression .) ]
+  ! NOR             [ reduce using rule 3 (expression -> expression OR expression .) ]
+  ! XNOR            [ reduce using rule 3 (expression -> expression OR expression .) ]
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+
+
+state 15
+
+    (4) expression -> expression XOR expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 4 (expression -> expression XOR expression .)
+    OR              reduce using rule 4 (expression -> expression XOR expression .)
+    XOR             reduce using rule 4 (expression -> expression XOR expression .)
+    $end            reduce using rule 4 (expression -> expression XOR expression .)
+    RIGHTPARENTHESIS reduce using rule 4 (expression -> expression XOR expression .)
+    NAND            shift and go to state 8
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+  ! NAND            [ reduce using rule 4 (expression -> expression XOR expression .) ]
+  ! NOR             [ reduce using rule 4 (expression -> expression XOR expression .) ]
+  ! XNOR            [ reduce using rule 4 (expression -> expression XOR expression .) ]
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+  ! XOR             [ shift and go to state 7 ]
+
+
+state 16
+
+    (5) expression -> expression NAND expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 5 (expression -> expression NAND expression .)
+    OR              reduce using rule 5 (expression -> expression NAND expression .)
+    XOR             reduce using rule 5 (expression -> expression NAND expression .)
+    NAND            reduce using rule 5 (expression -> expression NAND expression .)
+    $end            reduce using rule 5 (expression -> expression NAND expression .)
+    RIGHTPARENTHESIS reduce using rule 5 (expression -> expression NAND expression .)
+    NOR             shift and go to state 9
+    XNOR            shift and go to state 10
+
+  ! NOR             [ reduce using rule 5 (expression -> expression NAND expression .) ]
+  ! XNOR            [ reduce using rule 5 (expression -> expression NAND expression .) ]
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+  ! XOR             [ shift and go to state 7 ]
+  ! NAND            [ shift and go to state 8 ]
+
+
+state 17
+
+    (6) expression -> expression NOR expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 6 (expression -> expression NOR expression .)
+    OR              reduce using rule 6 (expression -> expression NOR expression .)
+    XOR             reduce using rule 6 (expression -> expression NOR expression .)
+    NAND            reduce using rule 6 (expression -> expression NOR expression .)
+    NOR             reduce using rule 6 (expression -> expression NOR expression .)
+    $end            reduce using rule 6 (expression -> expression NOR expression .)
+    RIGHTPARENTHESIS reduce using rule 6 (expression -> expression NOR expression .)
+    XNOR            shift and go to state 10
+
+  ! XNOR            [ reduce using rule 6 (expression -> expression NOR expression .) ]
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+  ! XOR             [ shift and go to state 7 ]
+  ! NAND            [ shift and go to state 8 ]
+  ! NOR             [ shift and go to state 9 ]
+
+
+state 18
+
+    (7) expression -> expression XNOR expression .
+    (2) expression -> expression . AND expression
+    (3) expression -> expression . OR expression
+    (4) expression -> expression . XOR expression
+    (5) expression -> expression . NAND expression
+    (6) expression -> expression . NOR expression
+    (7) expression -> expression . XNOR expression
+
+    AND             reduce using rule 7 (expression -> expression XNOR expression .)
+    OR              reduce using rule 7 (expression -> expression XNOR expression .)
+    XOR             reduce using rule 7 (expression -> expression XNOR expression .)
+    NAND            reduce using rule 7 (expression -> expression XNOR expression .)
+    NOR             reduce using rule 7 (expression -> expression XNOR expression .)
+    XNOR            reduce using rule 7 (expression -> expression XNOR expression .)
+    $end            reduce using rule 7 (expression -> expression XNOR expression .)
+    RIGHTPARENTHESIS reduce using rule 7 (expression -> expression XNOR expression .)
+
+  ! AND             [ shift and go to state 5 ]
+  ! OR              [ shift and go to state 6 ]
+  ! XOR             [ shift and go to state 7 ]
+  ! NAND            [ shift and go to state 8 ]
+  ! NOR             [ shift and go to state 9 ]
+  ! XNOR            [ shift and go to state 10 ]
+
+
+state 19
+
+    (8) expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .
+
+    AND             reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    OR              reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    XOR             reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    NAND            reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    NOR             reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    XNOR            reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    $end            reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+    RIGHTPARENTHESIS reduce using rule 8 (expression -> LEFTPARENTHESIS expression RIGHTPARENTHESIS .)
+
